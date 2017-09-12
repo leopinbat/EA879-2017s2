@@ -12,7 +12,7 @@ int yylex(void);
   int     ival;
 }
 %token <strval> STRING
-%token <ival> VAR IGUAL EOL ASPA
+%token <ival> VAR IGUAL EOL ASPA SYMBOL MULT
 %left SOMA
 
 %%
@@ -31,6 +31,14 @@ EXPRESSAO:
                           }
 
     ;
+BRIGTH: 
+    | STRING IGUAL STRING SYMBOL MULT  {
+         printf("Aplicando %s em %s\n", $5, $3);
+         brilho($3, $5, $4);
+         salvar_imagem($1, &I);
+
+                                  }  
+                           
 
 %%
 
